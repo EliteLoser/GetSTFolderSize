@@ -98,7 +98,7 @@ PrivateData = @{
         Tags = @('Folder', 'Size', 'RoboCopy')
 
         # A URL to the license for this module.
-        # LicenseUri = ''
+        LicenseUri = 'https://github.com/EliteLoser/GetSTFolderSize/blob/master/LICENSE'
 
         # A URL to the main website for this project.
         ProjectUri = 'https://github.com/EliteLoser/GetSTFolderSize'
@@ -108,7 +108,7 @@ PrivateData = @{
 
         # ReleaseNotes of this module
         ReleaseNotes = '
-* Specified root module in manifest so that install module will import the function properly
+* Specified root module in manifest so that Install-Module will import the function properly.
 * Try to drastically improve compatibility with so far unexpected output (account for possible negative numbers).
 * Consistently account for negative numbers (including the last one on each line/whitespace-separated entry...).'
 
