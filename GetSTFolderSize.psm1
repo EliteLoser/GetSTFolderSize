@@ -56,13 +56,15 @@ function Get-STFolderSize {
         Get-STFolderSize -Path Z:\Database -Precision 2
 
     .EXAMPLE
-        Get-STFolderSize -Path Z:\Database -RoboOnly -RoboThreadCount 64
+        Get-STFolderSize -Path Z:\Users\*\AppData\*\Something -RoboOnly -RoboThreadCount 64
 
     .EXAMPLE
-        Get-STFolderSize -Path Z:\Database -RoboOnly
+        Get-STFolderSize -Path "Z:\Database[0-9][0-9]" -RoboOnly
 
     .EXAMPLE
-        Get-STFolderSize A:\FullHDFloppyMovies -ComOnly
+        Get-STFolderSize -LiteralPath 'A:\Full[HD]FloppyMovies' -ComOnly
+
+        Supports wildcard characters in the path name with -LiteralPath.
 
     .LINK 
         https://www.powershelladmin.com/wiki/Get_Folder_Size_with_PowerShell,_Blazingly_Fast
