@@ -5,6 +5,7 @@ function Get-STFolderSize {
         logging only option, which makes it not actually copy or move files, but just list them, and
         the end summary result is parsed to extract the relevant data.
 
+    .DESCRIPTION
         There is a -ComOnly parameter for using only COM, and a -RoboOnly parameter for using only
         robocopy.exe with the logging only option.
 
@@ -48,20 +49,20 @@ function Get-STFolderSize {
         Default: 16 (gave the fastest results during my testing).
 
     .EXAMPLE
-        . .\Get-FolderSize.ps1
-        PS C:\> 'C:\Windows', 'E:\temp' | Get-FolderSize
+        Import-Module .\Get-FolderSize.psm1
+        PS C:\> 'C:\Windows', 'E:\temp' | Get-STFolderSize
 
     .EXAMPLE
-        Get-FolderSize -Path Z:\Database -Precision 2
+        Get-STFolderSize -Path Z:\Database -Precision 2
 
     .EXAMPLE
-        Get-FolderSize -Path Z:\Database -RoboOnly -RoboThreadCount 64
+        Get-STFolderSize -Path Z:\Database -RoboOnly -RoboThreadCount 64
 
     .EXAMPLE
-        Get-FolderSize -Path Z:\Database -RoboOnly
+        Get-STFolderSize -Path Z:\Database -RoboOnly
 
     .EXAMPLE
-        Get-FolderSize A:\FullHDFloppyMovies -ComOnly
+        Get-STFolderSize A:\FullHDFloppyMovies -ComOnly
 
     .LINK 
         https://www.powershelladmin.com/wiki/Get_Folder_Size_with_PowerShell,_Blazingly_Fast
