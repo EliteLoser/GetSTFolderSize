@@ -1,72 +1,72 @@
-#requires -version 2
-
-
-<#
-.SYNOPSIS
-    Gets folder sizes using COM and by default with a fallback to robocopy.exe, with the
-    logging only option, which makes it not actually copy or move files, but just list them, and
-    the end summary result is parsed to extract the relevant data.
-
-    There is a -ComOnly parameter for using only COM, and a -RoboOnly parameter for using only
-    robocopy.exe with the logging only option.
-
-    The robocopy output also gives a count of files and folders, unlike the COM method output.
-    The default number of threads used by robocopy is 8, but I set it to 16 since this cut the
-    run time down to almost half in some cases during my testing. You can specify a number of
-    threads between 1-128 with the parameter -RoboThreadCount.
-
-    Both of these approaches are apparently much faster than .NET and Get-ChildItem in PowerShell.
-
-    The properties of the objects will be different based on which method is used, but
-    the "TotalBytes" property is always populated if the directory size was successfully
-    retrieved. Otherwise you should get a warning (and the sizes will be zero).
-    
-    Online documentation: http://www.powershelladmin.com/wiki/Get_Folder_Size_with_PowerShell,_Blazingly_Fast
-    
-    MIT license. http://www.opensource.org/licenses/MIT
-    
-    Copyright (C) 2015-2017, Joakim Svendsen
-    All rights reserved.
-    Svendsen Tech.
-    
-.PARAMETER Path
-    Path or paths to measure size of.
-
-.PARAMETER LiteralPath
-    Path or paths to measure size of, supporting wildcard characters
-    in the names, as with Get-ChildItem.
-
-.PARAMETER Precision
-    Number of digits after decimal point in rounded numbers.
-
-.PARAMETER RoboOnly
-    Do not use COM, only robocopy, for always getting full details.
-
-.PARAMETER ComOnly
-    Never fall back to robocopy, only use COM.
-
-.PARAMETER RoboThreadCount
-    Number of threads used when falling back to robocopy, or with -RoboOnly.
-    Default: 16 (gave the fastest results during my testing).
-
-.EXAMPLE
-    . .\Get-FolderSize.ps1
-    PS C:\> 'C:\Windows', 'E:\temp' | Get-FolderSize
-
-.EXAMPLE
-    Get-FolderSize -Path Z:\Database -Precision 2
-
-.EXAMPLE
-    Get-FolderSize -Path Z:\Database -RoboOnly -RoboThreadCount 64
-
-.EXAMPLE
-    Get-FolderSize -Path Z:\Database -RoboOnly
-
-.EXAMPLE
-    Get-FolderSize A:\FullHDFloppyMovies -ComOnly
-
-#>
 function Get-STFolderSize {
+    <#
+    .SYNOPSIS
+        Gets folder sizes using COM and by default with a fallback to robocopy.exe, with the
+        logging only option, which makes it not actually copy or move files, but just list them, and
+        the end summary result is parsed to extract the relevant data.
+
+        There is a -ComOnly parameter for using only COM, and a -RoboOnly parameter for using only
+        robocopy.exe with the logging only option.
+
+        The robocopy output also gives a count of files and folders, unlike the COM method output.
+        The default number of threads used by robocopy is 8, but I set it to 16 since this cut the
+        run time down to almost half in some cases during my testing. You can specify a number of
+        threads between 1-128 with the parameter -RoboThreadCount.
+
+        Both of these approaches are apparently much faster than .NET and Get-ChildItem in PowerShell.
+
+        The properties of the objects will be different based on which method is used, but
+        the "TotalBytes" property is always populated if the directory size was successfully
+        retrieved. Otherwise you should get a warning (and the sizes will be zero).
+
+        Online documentation: http://www.powershelladmin.com/wiki/Get_Folder_Size_with_PowerShell,_Blazingly_Fast
+
+        MIT license. http://www.opensource.org/licenses/MIT
+
+        Copyright (C) 2015-2017, Joakim Svendsen
+        All rights reserved.
+        Svendsen Tech.
+
+    .PARAMETER Path
+        Path or paths to measure size of.
+
+    .PARAMETER LiteralPath
+        Path or paths to measure size of, supporting wildcard characters
+        in the names, as with Get-ChildItem.
+
+    .PARAMETER Precision
+        Number of digits after decimal point in rounded numbers.
+
+    .PARAMETER RoboOnly
+        Do not use COM, only robocopy, for always getting full details.
+
+    .PARAMETER ComOnly
+        Never fall back to robocopy, only use COM.
+
+    .PARAMETER RoboThreadCount
+        Number of threads used when falling back to robocopy, or with -RoboOnly.
+        Default: 16 (gave the fastest results during my testing).
+
+    .EXAMPLE
+        . .\Get-FolderSize.ps1
+        PS C:\> 'C:\Windows', 'E:\temp' | Get-FolderSize
+
+    .EXAMPLE
+        Get-FolderSize -Path Z:\Database -Precision 2
+
+    .EXAMPLE
+        Get-FolderSize -Path Z:\Database -RoboOnly -RoboThreadCount 64
+
+    .EXAMPLE
+        Get-FolderSize -Path Z:\Database -RoboOnly
+
+    .EXAMPLE
+        Get-FolderSize A:\FullHDFloppyMovies -ComOnly
+
+    .LINK 
+        https://www.powershelladmin.com/wiki/Get_Folder_Size_with_PowerShell,_Blazingly_Fast
+
+    #>
     [CmdletBinding(DefaultParameterSetName = "Path")]
     param(
         [Parameter(ParameterSetName = "Path",
