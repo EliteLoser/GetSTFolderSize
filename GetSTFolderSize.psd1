@@ -9,10 +9,10 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-# RootModule = ''
+RootModule = "$PSScriptRoot\GetSTFolderSize.psm1"
 
 # Version number of this module.
-ModuleVersion = '1.2.3'
+ModuleVersion = '1.2.3.1'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -101,13 +101,15 @@ PrivateData = @{
         # LicenseUri = ''
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/EliteLoser/GetSTFolderSize'
 
         # A URL to an icon representing this module.
         # IconUri = ''
 
         # ReleaseNotes of this module
-        ReleaseNotes = '* Try to drastically improve compatibility with so far unexpected output (account for possible negative numbers).
+        ReleaseNotes = '
+* Specified root module in manifest so that install module will import the function properly
+* Try to drastically improve compatibility with so far unexpected output (account for possible negative numbers).
 * Consistently account for negative numbers (including the last one on each line/whitespace-separated entry...).'
 
         # External dependent modules of this module
@@ -118,7 +120,7 @@ PrivateData = @{
 } # End of PrivateData hashtable
 
 # HelpInfo URI of this module
-# HelpInfoURI = ''
+HelpInfoURI = 'https://www.powershelladmin.com/wiki/Get_Folder_Size_with_PowerShell,_Blazingly_Fast'
 
 # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
 # DefaultCommandPrefix = ''
