@@ -24,7 +24,7 @@ function Get-STFolderSize {
 
         MIT license. http://www.opensource.org/licenses/MIT
 
-        Copyright (C) 2015-2017, Joakim Svendsen
+        Copyright (C) 2015-present, Joakim Borger Svendsen
         All rights reserved.
         Svendsen Tech.
 
