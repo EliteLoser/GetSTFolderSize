@@ -50,10 +50,14 @@ function Get-STFolderSize {
 
     .PARAMETER ExcludeDirectory
         Names and paths for directories to exclude, as supported by the RoboCopy.exe /XD syntax.
+        To guarantee its use, you need to use the parameter -RoboOnly. If COM is used, nothing
+        is filtered out.
         
     .PARAMETER ExcludeFile
         Names/paths/wildcards for files to exclude, as supported by the RoboCopy.exe /XF syntax.
-        
+        To guarantee its use, you need to use the parameter -RoboOnly. If COM is used, nothing
+        is filtered out.
+
     .EXAMPLE
         Import-Module .\Get-FolderSize.psm1
         PS C:\> 'C:\Windows', 'E:\temp' | Get-STFolderSize
