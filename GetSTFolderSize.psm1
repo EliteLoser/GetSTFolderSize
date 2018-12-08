@@ -103,7 +103,7 @@ function Get-STFolderSize {
     
         $DefaultProperties = 'Path', 'TotalBytes', 'TotalMBytes', 'TotalGBytes', 'DirCount', 'FileCount',
             'DirFailed', 'FileFailed', 'TimeElapsed', 'StartedTime', 'EndedTime'
-        if ($ExcludeDirectory.Count -gt 0 -or $ExcludeFile.Count -gt 0 -and -not $ComOnly) {
+        if (($ExcludeDirectory.Count -gt 0 -or $ExcludeFile.Count -gt 0) -and -not $ComOnly) {
             $DefaultProperties += @("CopiedDirCount", "CopiedFileCount", "CopiedBytes", "SkippedDirCount", "SkippedFileCount", "SkippedBytes")
         }
         if ($RoboOnly -and $ComOnly) {
