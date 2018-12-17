@@ -20,7 +20,7 @@ function Get-STFolderSize {
         the "TotalBytes" property is always populated if the directory size was successfully
         retrieved. Otherwise you should get a warning (and the sizes will be zero).
 
-        Online documentation: http://www.powershelladmin.com/wiki/Get_Folder_Size_with_PowerShell,_Blazingly_Fast
+        Online documentation: https://www.powershelladmin.com/wiki/Get_Folder_Size_with_PowerShell,_Blazingly_Fast
 
         MIT license. http://www.opensource.org/licenses/MIT
 
@@ -75,6 +75,29 @@ function Get-STFolderSize {
         Get-STFolderSize -LiteralPath 'A:\Full[HD]FloppyMovies' -ComOnly
 
         Supports wildcard characters in the path name with -LiteralPath.
+
+    .EXAMPLE
+        PS C:\temp> dir -dir | Get-STFolderSize | select Path, TotalMBytes | 
+            Sort-Object -Descending totalmbytes
+
+        Path                              TotalMBytes
+        ----                              -----------
+        C:\temp\PowerShellGetOld               1.2047
+        C:\temp\git                            0.6562
+        C:\temp\Docker                         0.3583
+        C:\temp\MergeCsv                       0.1574
+        C:\temp\testdir                        0.0476
+        C:\temp\DotNetVersionLister            0.0474
+        C:\temp\temp2                          0.0420
+        C:\temp\WriteAscii                     0.0328
+        C:\temp\tempbenchmark                  0.0257
+        C:\temp\From PS Gallery Benchmark      0.0253
+        C:\temp\RemoveOldFiles                 0.0238
+        C:\temp\modules                        0.0234
+        C:\temp\STDockerPs                     0.0216
+        C:\temp\RandomData                     0.0205
+        C:\temp\GetSTFolderSize                0.0198
+        C:\temp\Benchmark                      0.0151
 
     .LINK 
         https://www.powershelladmin.com/wiki/Get_Folder_Size_with_PowerShell,_Blazingly_Fast
