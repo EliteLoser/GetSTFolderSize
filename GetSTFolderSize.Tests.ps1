@@ -1,12 +1,12 @@
 #requires -version 3
 
 
-
 # Pester 4.x tests for Get-STFolderSize in the GetSTFolderSize module.
 # Joakim Borger Svendsen. Started 2018-12-17. Svendsen Tech.
 
 Import-Module -Name Pester -ErrorAction Stop
-Import-Module -Name GetSTFolderSize -ErrorAction Stop
+#Import-Module -Name GetSTFolderSize -ErrorAction Stop
+ipmo ..\GetSTFolderSize -Force
 
 # This is mine also, in the PowerShell Gallery. Just crudely making it available for the tests.
 Save-Module -Name RandomData -Path $Env:Temp -Force
@@ -55,13 +55,13 @@ Describe Get-STFolderSize {
     # Add files with a different extension for exclusion tests.
     New-RandomData -Path $STBaseDir -Count 5 -BaseName ignored -Extension .ignored -Size 1024 -LineLength 128
 
-    It "Ignores *.txt files that should be 5 kB in size in the test directory tree." {
+    It "Ignores *.ignored files that should be 5 kB in size in the test directory tree." {
         $RoboResult = Get-STFolderSize -Path $STBaseDir -RoboOnly -ExcludeFile *.ignored
         $RoboResult.SkippedBytes | Should -Be (5*1024)
         $RoboResult.SkippedFileCount | Should -Be 5
     }
 
-    It "Ignores a directory with files containing 5 kB worth of files." {
+    It "Ignores a specified directory name (with files containing 5 kB worth of files)." {
         $RoboResult = Get-STFolderSize -Path $STBaseDir -RoboOnly -ExcludeDirectory sub3
         $RoboResult.SkippedDirCount | Should -Be 1
     }
