@@ -12,7 +12,7 @@
     RootModule = "GetSTFolderSize.psm1"
 
     # Version number of this module.
-    ModuleVersion = '1.3.0'
+    ModuleVersion = '1.3.1'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -108,8 +108,8 @@
 
             # ReleaseNotes of this module
             ReleaseNotes = '
-    * Add parameters -ExcludeDirectory and -ExcludeFile.
-    * Note that the module import issues were fixed in the previous release earlier today. Thanks to JJ Fullmer.'
+    * Add TBytes property (terabytes).
+    '
 
             # External dependent modules of this module
             # ExternalModuleDependencies = ''

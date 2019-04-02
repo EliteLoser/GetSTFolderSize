@@ -124,7 +124,7 @@ function Get-STFolderSize {
     
     Begin {
     
-        $DefaultProperties = 'Path', 'TotalBytes', 'TotalMBytes', 'TotalGBytes', 'DirCount', 'FileCount',
+        $DefaultProperties = 'Path', 'TotalBytes', 'TotalMBytes', 'TotalGBytes', 'TotalTBytes', 'DirCount', 'FileCount',
             'DirFailed', 'FileFailed', 'TimeElapsed', 'StartedTime', 'EndedTime'
         if (($ExcludeDirectory.Count -gt 0 -or $ExcludeFile.Count -gt 0) -and -not $ComOnly) {
             $DefaultProperties += @("CopiedDirCount", "CopiedFileCount", "CopiedBytes", "SkippedDirCount", "SkippedFileCount", "SkippedBytes")
@@ -173,6 +173,7 @@ function Get-STFolderSize {
                             TotalBytes = [Decimal] $Matches['ByteCount']
                             TotalMBytes = [Math]::Round(([Decimal] $Matches['ByteCount'] / 1MB), $Precision)
                             TotalGBytes = [Math]::Round(([Decimal] $Matches['ByteCount'] / 1GB), $Precision)
+                            TotalTBytes = [Math]::Round(([Decimal] $Matches['ByteCount'] / 1TB), $Precision)
                             BytesFailed = [Decimal] $Matches['BytesFailed']
                             DirCount = [Decimal] $Matches['DirCount']
                             FileCount = [Decimal] $Matches['FileCount']
@@ -252,6 +253,7 @@ function Get-STFolderSize {
                 TotalBytes = [Decimal] $TotalBytes
                 TotalMBytes = [Math]::Round(([Decimal] $TotalBytes / 1MB), $Precision)
                 TotalGBytes = [Math]::Round(([Decimal] $TotalBytes / 1GB), $Precision)
+                TotalTBytes = [Math]::Round(([Decimal] $TotalBytes / 1TB), $Precision)
                 BytesFailed = $null
                 DirCount = $null
                 FileCount = $null
