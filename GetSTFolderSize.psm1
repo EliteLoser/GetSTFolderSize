@@ -161,6 +161,15 @@ function Get-STFolderSize {
                     [String] $Summary = robocopy $p NULL $RoboCopyArgs | Select-Object -Last 8
                     [DateTime] $EndedTime = [DateTime]::Now
                     #[String] $DefaultIgnored = '(?:\s+[\-\d]+){3}'
+                    <# only used for systems installed in german
+                    [regex] $HeaderRegex = '\s+Insgesamt\s*Kopiert.*?(?:bersprungen).*?(?:bereinstimmung)\s+FEHLER\s+Extras'
+                    [regex] $DirLineRegex = 'Verzeich.\s*:\s*(?<DirCount>\d+)(?:\s+\d+){3}\s+(?<DirFailed>\d+)\s+\d+'
+                    [regex] $FileLineRegex = 'Dateien\s*:\s*(?<FileCount>\d+)(?:\s+\d+){3}\s+(?<FileFailed>\d+)\s+\d+'
+                    [regex] $BytesLineRegex = 'Bytes\s*:\s*(?<ByteCount>\d+)(?:\s+\d+){3}\s+(?<BytesFailed>\d+)\s+\d+'
+                    [regex] $TimeLineRegex = 'Zeiten\s*:\s*(?<TimeElapsed>\d+).*'
+                    [regex] $EndedLineRegex = 'Beendet\s*:\s*(?<EndedTime>.+)'
+                    #>
+                    
                     [Regex] $HeaderRegex = '\s+Total\s*Copied\s+Skipped\s+Mismatch\s+FAILED\s+Extras'
                     [Regex] $DirLineRegex = "Dirs\s*:\s*(?<DirCount>\d+)(?<CopiedDirCount>\s+[\-\d]+)(?<SkippedDirCount>\s+[\-\d]+)(?:\s+[\-\d]+)\s+(?<DirFailed>\d+)\s+[\-\d]+"
                     [Regex] $FileLineRegex = "Files\s*:\s*(?<FileCount>\d+)(?<CopiedFileCount>\s+[\-\d]+)(?<SkippedFileCount>\s+[\-\d]+)(?:\s+[\-\d]+)\s+(?<FileFailed>\d+)\s+[\-\d]+"
