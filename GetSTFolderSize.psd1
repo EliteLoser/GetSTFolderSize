@@ -12,7 +12,7 @@
     RootModule = "GetSTFolderSize.psm1"
 
     # Version number of this module.
-    ModuleVersion = '1.3.1'
+    ModuleVersion = '1.3.2'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -107,9 +107,9 @@
             # IconUri = ''
 
             # ReleaseNotes of this module
-            ReleaseNotes = '
-    * Add TBytes property (terabytes).
-    '
+            ReleaseNotes = "
+* Fix a bug causing an error message when you don't have write permissions in the current working directory. Issue 11 on GitHub.
+    "
 
             # External dependent modules of this module
             # ExternalModuleDependencies = ''
