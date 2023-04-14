@@ -108,7 +108,7 @@
 
             # ReleaseNotes of this module
             ReleaseNotes = "
-* Fix a bug causing an error message when you don't have write permissions in the current working directory. Issue 11 on GitHub.
+* Fix a bug potentially in rare cases causing an error message when you don't have write permissions in the current working directory. Issue 11 on GitHub.
     "
 
             # External dependent modules of this module
