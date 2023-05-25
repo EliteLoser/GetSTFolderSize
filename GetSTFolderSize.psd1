@@ -109,7 +109,8 @@
             # ReleaseNotes of this module
             ReleaseNotes = "
 * Fix a bug potentially in rare cases causing an error message when you don't have write permissions in the current working directory. Issue 11 on GitHub.
-    "
+* Require -RoboOnly in a halting way when you specify either -ExcludeDirectory or -ExludeFile.
+"
 
             # External dependent modules of this module
             # ExternalModuleDependencies = ''
