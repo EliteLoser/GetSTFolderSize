@@ -126,6 +126,9 @@ function Get-STFolderSize {
     
         $DefaultProperties = 'Path', 'TotalBytes', 'TotalMBytes', 'TotalGBytes', 'TotalTBytes', 'DirCount', 'FileCount',
             'DirFailed', 'FileFailed', 'TimeElapsed', 'StartedTime', 'EndedTime'
+        if (($ExcludeDirectory.Count -gt 0 -or $ExcludeFile.Count -gt 0) -and -not $RoboOnly) {
+            Write-Error -Message "To use -ExcludeDirectory or -ExcludeFile, you need to also use -RoboOnly." -ErrorAction Stop
+        }
         if (($ExcludeDirectory.Count -gt 0 -or $ExcludeFile.Count -gt 0) -and -not $ComOnly) {
             $DefaultProperties += @("CopiedDirCount", "CopiedFileCount", "CopiedBytes", "SkippedDirCount", "SkippedFileCount", "SkippedBytes")
         }
@@ -158,7 +161,7 @@ function Get-STFolderSize {
                         $RoboCopyArgs += @(@("/XF") + @($ExcludeFile))
                     }
                     [DateTime] $StartedTime = [DateTime]::Now
-                    [String] $Summary = robocopy $p $Env:Temp $RoboCopyArgs | Select-Object -Last 8
+                    [String] $Summary = robocopy $p NULL $RoboCopyArgs | Select-Object -Last 8
                     [DateTime] $EndedTime = [DateTime]::Now
                     #[String] $DefaultIgnored = '(?:\s+[\-\d]+){3}'
                     [Regex] $HeaderRegex = '\s+Total\s*Copied\s+Skipped\s+Mismatch\s+FAILED\s+Extras'
